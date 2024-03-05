@@ -75,7 +75,7 @@ export const ProductCard = ({ name, img, price, id, currency }) => {
 
     const handleButtonDeleteClick = () => {
         dispatch(deleteProduct(id));
-        toast.success('Product was deleted from cart', {
+        toast.warn('Product was deleted from cart', {
             position: 'top-right',
             autoClose: 2000,
             hideProgressBar: false,
