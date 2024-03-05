@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import { lazy } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
+import Shops from './pages/Shops/Shops';
+
+// import { Container } from './App.styled';
+// import { Bars } from 'react-loader-spinner';
+
+import { SharedLayout } from './components/SharedLayout/SharedLayout';
+import ShopProducts from './components/ShopProducts/ShopProducts';
+
+const ShoppingCart = lazy(() => import('./pages/ShoppingCart/ShoppingCart'));
+
+const Home = lazy(() => import('./pages/Home/Home'));
+const History = lazy(() => import('./pages/Histoty/History'));
+const Coupons = lazy(() => import('./pages/Coupons/Coupons'));
+
+const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 
 function App() {
-  const [count, setCount] = useState(0)
+    return (
+        <>
+            <Routes>
+                <Route path="/" element={<SharedLayout />}>
+                    <Route index element={<Home />} />
+                    <Route path="shops" element={<Shops />}>
+                        <Route path=":shopName" element={<ShopProducts />} />
+                    </Route>
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+                    <Route path="cart" element={<ShoppingCart />} />
+                    <Route path="history" element={<History />} />
+                    <Route path="coupons" element={<Coupons />} />
+                    <Route path="*" element={<NotFound />} />
+                </Route>
+            </Routes>
+
+            <ToastContainer />
+        </>
+    );
 }
 
-export default App
+export default App;
