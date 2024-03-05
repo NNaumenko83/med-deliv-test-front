@@ -9,10 +9,13 @@ import { AddressContext } from '../../pages/ShoppingCart/ShoppingCart';
 import {
     InputAutocomplete,
     InputWrapper,
+    SuggestionsItem,
     SuggestionsList,
 } from './AddressInput.styled';
+import TextField from '@mui/material/TextField';
+import PropTypes from 'prop-types';
 
-export const AddressInput = () => {
+export const AddressInput = ({ addressError }) => {
     const { setAddressBuyer, locationBuyer, setLocationBuyer } =
         useContext(AddressContext);
     const [inputValue, setInputValue] = useState('');
@@ -71,25 +74,32 @@ export const AddressInput = () => {
             } = suggestion;
 
             return (
-                <li
+                <SuggestionsItem
                     key={place_id}
                     onClick={() => handlePlaceSelect(suggestion)}
                 >
                     <strong>{main_text}</strong> <small>{secondary_text}</small>
-                </li>
+                </SuggestionsItem>
             );
         });
 
     return (
         <InputWrapper ref={ref}>
-            <InputAutocomplete
+            <TextField
                 value={inputValue}
                 onChange={handleInput}
                 placeholder="Where are you going?"
+                error={addressError}
+                label="Address"
+                sx={{ width: '100%' }}
             />
             {status === 'OK' && (
                 <SuggestionsList>{renderSuggestions()}</SuggestionsList>
             )}
         </InputWrapper>
     );
+};
+
+AddressInput.propTypes = {
+    addressError: PropTypes.bool.isRequired,
 };

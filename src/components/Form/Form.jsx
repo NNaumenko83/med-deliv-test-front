@@ -1,9 +1,5 @@
 import { useContext, useState } from 'react';
-import {
-    /* ErrorText,  */ FormCart,
-    FormInput,
-    SubmitButton,
-} from './Form.styled';
+import { FormCart, SubmitButton } from './Form.styled';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetProducts, selectProducts } from '../../redux/productsSlice';
@@ -13,6 +9,7 @@ import { sendOrder } from '../../services/ShopAPI';
 import { AddressInput } from '../AddressInput/AddressInput';
 import { AddressContext } from '../../pages/ShoppingCart/ShoppingCart';
 import ErrorText from '../ErrorText/ErrorText';
+import TextField from '@mui/material/TextField';
 
 export const Form = () => {
     const dispatch = useDispatch();
@@ -124,27 +121,40 @@ export const Form = () => {
     return (
         <FormCart onSubmit={handleSubmit}>
             <label>
-                Address
-                <AddressInput />
+                <AddressInput addressError={!!errors.address} />
             </label>
 
             <label>
-                Name:
-                <FormInput type="text" name="name" onChange={handleChange} />
+                <TextField
+                    type="text"
+                    name="name"
+                    onChange={handleChange}
+                    label="Name"
+                    error={errors.name}
+                    sx={{ width: '100%' }}
+                />
                 {errors.name && <ErrorText>{errors.name}</ErrorText>}
             </label>
             <label>
-                Email:
-                <FormInput type="email" name="email" onChange={handleChange} />
+                <TextField
+                    type="email"
+                    name="email"
+                    onChange={handleChange}
+                    label="Email"
+                    error={errors.name}
+                    sx={{ width: '100%' }}
+                />
                 {errors.email && <ErrorText>{errors.email}</ErrorText>}
             </label>
             <label>
-                Phone:
-                <FormInput
+                <TextField
                     type="text"
                     name="phone"
                     onChange={handleChange}
                     placeholder="XXX XXX-XX-XX"
+                    label="Phone"
+                    error={errors.name}
+                    sx={{ width: '100%' }}
                 />
                 {errors.phone && <ErrorText>{errors.phone}</ErrorText>}
             </label>

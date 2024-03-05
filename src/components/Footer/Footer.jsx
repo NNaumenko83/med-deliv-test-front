@@ -12,7 +12,7 @@ export const Footer = () => {
         <FooterStyled>
             <FooterContainer>
                 <Link
-                    href="https://github.com/NNaumenko83/nova-poshta-test-task"
+                    href="https://github.com/NNaumenko83/med-deliv-test-front"
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                 >
