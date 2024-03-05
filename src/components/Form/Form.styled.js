@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const FormCart = styled.form`
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
     padding: 20px;
 
     overflow: auto;
@@ -42,13 +42,6 @@ export const SubmitButton = styled.button`
     }
 `;
 
-export const ErrorText = styled.span`
-    color: #e42c01;
-`;
-
-export const StyledInput = styled.input`
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #dbf6ff;
-    border-radius: 5px;
+export const StyledLabel = styled.label`
+    position: relative;
 `;

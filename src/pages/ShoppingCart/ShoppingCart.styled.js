@@ -87,6 +87,7 @@ export const TestWrapper = styled.div`
 `;
 
 export const TotalPrice = styled.span`
-    color: red;
+    color: #0077ef;
+    font-size: 24px;
     font-family: 'MadimiOne';
 `;

@@ -1,8 +1,12 @@
 import { useContext, useState } from 'react';
-import { FormCart, SubmitButton } from './Form.styled';
+import { FormCart, StyledLabel, SubmitButton } from './Form.styled';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-import { resetProducts, selectProducts } from '../../redux/productsSlice';
+import {
+    resetProducts,
+    selectProducts,
+    selectTotalValue,
+} from '../../redux/productsSlice';
 import { Oval } from 'react-loader-spinner';
 import { deleteShop, selectShop } from '../../redux/shopSlice';
 import { sendOrder } from '../../services/ShopAPI';
@@ -17,6 +21,7 @@ export const Form = () => {
     const shop = useSelector(selectShop);
     const [isLoading, setIsLoading] = useState(false);
     const { isPeople, addressBuyer } = useContext(AddressContext);
+    const total = useSelector(selectTotalValue);
 
     const initialState = { name: '', email: '', phone: '' };
 
@@ -120,11 +125,11 @@ export const Form = () => {
 
     return (
         <FormCart onSubmit={handleSubmit}>
-            <label>
+            <StyledLabel>
                 <AddressInput addressError={!!errors.address} />
-            </label>
+            </StyledLabel>
 
-            <label>
+            <StyledLabel>
                 <TextField
                     type="text"
                     name="name"
@@ -134,8 +139,8 @@ export const Form = () => {
                     sx={{ width: '100%' }}
                 />
                 {errors.name && <ErrorText>{errors.name}</ErrorText>}
-            </label>
-            <label>
+            </StyledLabel>
+            <StyledLabel>
                 <TextField
                     type="email"
                     name="email"
@@ -145,8 +150,8 @@ export const Form = () => {
                     sx={{ width: '100%' }}
                 />
                 {errors.email && <ErrorText>{errors.email}</ErrorText>}
-            </label>
-            <label>
+            </StyledLabel>
+            <StyledLabel>
                 <TextField
                     type="text"
                     name="phone"
@@ -157,11 +162,11 @@ export const Form = () => {
                     sx={{ width: '100%' }}
                 />
                 {errors.phone && <ErrorText>{errors.phone}</ErrorText>}
-            </label>
+            </StyledLabel>
 
             <SubmitButton
                 type="submit"
-                disabled={!isPeople}
+                disabled={!isPeople || total === 0}
                 /*  disabled={selectedProducts.length === 0} */
             >
                 {isLoading ? (

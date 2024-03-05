@@ -7,6 +7,7 @@ import {
     PriceWrapper,
     TestWrapper,
     TextPrice,
+    TotalPrice,
 } from './ShoppingCart.styled';
 import { Form } from '../../components/Form/Form';
 import { CartProductsList } from '../../components/CartProductsList/CartProductsList';
@@ -51,6 +52,7 @@ const ShoppingCart = () => {
         queryFn: getCoupons,
         staleTime: 60000,
     });
+    console.log('coupons:', coupons);
 
     const handlerInputCouponChange = e => {
         setCouponId(e.target.value);
@@ -59,10 +61,13 @@ const ShoppingCart = () => {
     useEffect(() => {
         if (couponId) {
             const discount = getDiscount(coupons, couponId);
-            setDiscount((total - (total * (100 - discount)) / 100).toFixed(2));
-            setTotalWithDiscount(((total * (100 - discount)) / 100).toFixed(2));
+            setDiscount(total - (total * (100 - discount)) / 100);
+            setTotalWithDiscount((total * (100 - discount)) / 100);
+            return;
         }
-    }, [couponId, coupons, total]);
+        setDiscount(0);
+        setTotalWithDiscount((total * (100 - discount)) / 100);
+    }, [couponId, coupons, discount, total]);
 
     function handlerCaptcha(value) {
         setIsPeople(!!value);
@@ -99,16 +104,17 @@ const ShoppingCart = () => {
                         </TextPrice>
                         <TextPrice>
                             <span> Discount:</span>
-                            <span>{discount}</span>
+                            <span>{discount.toFixed(2)}</span>
                             <span> UAH</span>
                         </TextPrice>
                         <TextPrice>
-                            <span>Total price:</span>
-                            <span>
-                                {' '}
-                                {totalWithDiscount ? totalWithDiscount : total}
-                            </span>
-                            <span> UAH</span>
+                            <TotalPrice>Total price:</TotalPrice>
+                            <TotalPrice>
+                                {totalWithDiscount
+                                    ? totalWithDiscount.toFixed(2)
+                                    : total.toFixed(2)}
+                            </TotalPrice>
+                            <TotalPrice> UAH</TotalPrice>
                         </TextPrice>
                     </PriceWrapper>
                     <CouponsWrapper>

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
     GoogleMap,
     Marker,
@@ -21,12 +21,15 @@ setDefaults({
     language: 'en',
 });
 
-const Map = () => {
+const Map = React.memo(() => {
     const [response, setResponse] = useState(null);
     const shop = useSelector(selectShop);
-    console.log('shop:', shop);
     const [directionsKey, setDirectionsKey] = useState(0);
     const [locationStore, setLocationStore] = useState();
+
+    useEffect(() => {
+        console.log('useEffect MAP');
+    });
 
     const { locationBuyer, setLocationBuyer } = useContext(AddressContext);
 
@@ -69,6 +72,7 @@ const Map = () => {
                 lng: coords.longitude,
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isGeolocationAvailable, isGeolocationEnabled, coords]);
 
     useEffect(() => {
@@ -77,6 +81,7 @@ const Map = () => {
             setDirectionsKey(prevKey => prevKey + 1);
             console.log('Response cleared:', response);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [locationBuyer, locationStore]);
 
     useEffect(() => {
@@ -87,6 +92,7 @@ const Map = () => {
             });
             setResponse(null);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [locationBuyer]);
 
     const directionsCallback = response => {
@@ -184,6 +190,8 @@ const Map = () => {
             </GoogleMap>
         </div>
     );
-};
+});
+
+Map.displayName = 'Map';
 
 export default Map;
