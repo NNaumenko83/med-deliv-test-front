@@ -9,6 +9,7 @@ export const CartContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
+    overflow: auto;
 `;
 
 export const CartProducts = styled.div`
@@ -26,7 +27,7 @@ export const CartProducts = styled.div`
 `;
 
 export const FormContainer = styled.div`
-    padding: 20px;
+    padding: 15px;
     overflow: auto;
 
     border: 1px solid #8ed0ff;
@@ -40,8 +41,9 @@ export const FormContainer = styled.div`
 `;
 
 export const TextPrice = styled.p`
-    margin-top: 20px;
     font-size: 1.2rem;
+    display: flex;
+    gap: 4px;
 `;
 
 export const MapWrapper = styled.div`
@@ -60,7 +62,11 @@ export const MapWrapper = styled.div`
 
 export const PriceWrapper = styled.div`
     grid-area: 8 / 5 / 9 / 7;
-    background-color: green;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 5px 2px 2px 10px;
 `;
 export const SubmitWrapper = styled.div`
     grid-area: 8 / 7 / 9 / 9;
@@ -69,10 +75,18 @@ export const SubmitWrapper = styled.div`
 
 export const CouponsWrapper = styled.div`
     grid-area: 7 / 5 / 8 / 7;
-    background-color: yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 2px;
 `;
 
 export const TestWrapper = styled.div`
     width: max-content;
     grid-area: 7 / 7 / 8 / 9;
+`;
+
+export const TotalPrice = styled.span`
+    color: red;
+    font-family: 'MadimiOne';
 `;

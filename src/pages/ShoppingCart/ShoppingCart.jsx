@@ -31,6 +31,7 @@ import Container from '../../components/Container/Container';
 import { createContext, useEffect, useRef, useState } from 'react';
 import { CAPTHCA_KEY } from '../../constant/googleKeys';
 import { getDiscount } from '../../helpers/getDiscont';
+import { TextField } from '@mui/material';
 
 export const AddressContext = createContext();
 
@@ -43,6 +44,7 @@ const ShoppingCart = () => {
     const [isPeople, setIsPeople] = useState(false);
     const [discount, setDiscount] = useState(0);
     const [totalWithDiscount, setTotalWithDiscount] = useState(0);
+    console.log('totalWithDiscount:', totalWithDiscount);
 
     const { data: coupons } = useQuery({
         queryKey: ['coupons'],
@@ -91,26 +93,32 @@ const ShoppingCart = () => {
                     </CartProducts>
                     <PriceWrapper>
                         <TextPrice>
-                            Price:
-                            {total.toFixed(2)}
-                            UAH
+                            <span>Price:</span>
+                            <span>{total.toFixed(2)}</span>
+                            <span>UAH</span>
                         </TextPrice>
-                        <TextPrice>Discount: {discount} UAH</TextPrice>
                         <TextPrice>
-                            Total price:
-                            {totalWithDiscount}
-                            UAH
+                            <span> Discount:</span>
+                            <span>{discount}</span>
+                            <span> UAH</span>
+                        </TextPrice>
+                        <TextPrice>
+                            <span>Total price:</span>
+                            <span>
+                                {' '}
+                                {totalWithDiscount ? totalWithDiscount : total}
+                            </span>
+                            <span> UAH</span>
                         </TextPrice>
                     </PriceWrapper>
                     <CouponsWrapper>
-                        <p>
-                            <input
-                                type="text"
-                                value={couponId}
-                                onChange={handlerInputCouponChange}
-                                placeholder="coupone code"
-                            />
-                        </p>
+                        <TextField
+                            type="text"
+                            value={couponId}
+                            onChange={handlerInputCouponChange}
+                            placeholder="coupone code"
+                            label="Coupon Code"
+                        />
                     </CouponsWrapper>
                     <TestWrapper>
                         <ReCAPTCHA
