@@ -7,7 +7,7 @@ import Container from '../../components/Container/Container';
 const Coupons = () => {
     const [randomCoupons, setRandomCoupons] = useState([]);
 
-    const { data: coupons } = useQuery({
+    const { data: coupons, isLoading } = useQuery({
         queryKey: ['coupons'],
         queryFn: getCoupons,
         staleTime: 60000,

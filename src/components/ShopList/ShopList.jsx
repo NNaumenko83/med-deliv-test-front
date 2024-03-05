@@ -5,9 +5,10 @@ import { getShops } from '../../services/ShopAPI';
 import { useQuery } from '@tanstack/react-query';
 import { CustomLink } from '../CustomLink/CustomLink';
 import { MutatingDots } from 'react-loader-spinner';
+import { Error } from '../Error/Error';
 
 function ShopList() {
-    const query = useQuery({
+    const { data, isLoasing, error } = useQuery({
         queryKey: ['shops'],
         queryFn: getShops,
         staleTime: 6000,
@@ -15,13 +16,13 @@ function ShopList() {
 
     return (
         <ShopsContainer>
-            {query?.data ? (
-                query.data.map(shop => (
+            {data &&
+                data.map(shop => (
                     <CustomLink key={shop.id} to={`/shops/${shop.id}`}>
                         {shop.name}
                     </CustomLink>
-                ))
-            ) : (
+                ))}
+            {isLoasing && (
                 <MutatingDots
                     height={100}
                     width={100}
@@ -32,6 +33,7 @@ function ShopList() {
                     visible={true}
                 />
             )}
+            {error && <Error />}
         </ShopsContainer>
     );
 }

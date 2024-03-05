@@ -11,13 +11,11 @@ import { useQuery } from '@tanstack/react-query';
 
 const ShopProducts = () => {
     const { shopName } = useParams();
-    console.log('shopName:', shopName);
 
     const { data, isLoading, error } = useQuery({
         queryKey: ['products', shopName],
         queryFn: async () => {
             const data = await getProducts(shopName);
-            console.log('data:', data);
             return data;
         },
         staleTime: 6000,

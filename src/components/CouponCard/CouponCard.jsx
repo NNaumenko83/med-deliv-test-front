@@ -4,12 +4,24 @@ import {
     DiscountWrapper,
     StyledCouponCard,
 } from './CouponCard.styled';
+import { toast } from 'react-toastify';
 
 function CouponCard({ coupon }) {
     const copyCouponId = couponId => {
         navigator.clipboard
             .writeText(couponId)
-            .then(() => alert('Coupon ID copied to clipboard'))
+            .then(() =>
+                toast.success('Coupon code copied', {
+                    position: 'top-right',
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                })
+            )
             .catch(error => console.error('Error copying coupon ID:', error));
     };
 
