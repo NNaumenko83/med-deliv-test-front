@@ -4,6 +4,7 @@ export const CartContainer = styled.div`
     height: calc(100vh - 150px - 50px);
     position: relative;
     gap: 4px;
+    padding: 20px;
 
     display: grid;
     grid-template-columns: repeat(8, 1fr);
@@ -34,7 +35,7 @@ export const FormContainer = styled.div`
     -moz-box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.75);
 
-    grid-area: 4 / 1 / 9 / 5;
+    grid-area: 5 / 1 / 9 / 5;
 `;
 
 export const TextPrice = styled.p`
@@ -43,7 +44,7 @@ export const TextPrice = styled.p`
 `;
 
 export const MapWrapper = styled.div`
-    grid-area: 1 / 1 / 4 / 5;
+    grid-area: 1 / 1 / 5/ 5;
     background-color: purple;
     border: 1px solid #272729;
     border-radius: 5px;
