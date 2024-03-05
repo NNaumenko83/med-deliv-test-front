@@ -6,11 +6,16 @@ import usePlacesAutocomplete, {
 } from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { AddressContext } from '../../pages/ShoppingCart/ShoppingCart';
+import {
+    InputAutocomplete,
+    InputWrapper,
+    SuggestionsList,
+} from './AddressInput.styled';
 
 export const AddressInput = () => {
     const { setAddressBuyer, locationBuyer, setLocationBuyer } =
         useContext(AddressContext);
-    const [inputValue, setInputValue] = useState(''); // Створення стану для зберігання значення введеного поля
+    const [inputValue, setInputValue] = useState('');
     const {
         value,
         suggestions: { status, data },
@@ -76,13 +81,15 @@ export const AddressInput = () => {
         });
 
     return (
-        <div ref={ref}>
-            <input
+        <InputWrapper ref={ref}>
+            <InputAutocomplete
                 value={inputValue}
                 onChange={handleInput}
                 placeholder="Where are you going?"
             />
-            {status === 'OK' && <ul>{renderSuggestions()}</ul>}
-        </div>
+            {status === 'OK' && (
+                <SuggestionsList>{renderSuggestions()}</SuggestionsList>
+            )}
+        </InputWrapper>
     );
 };

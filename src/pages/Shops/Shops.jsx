@@ -12,6 +12,7 @@ import {
     Title,
     TitleWrapper,
 } from './Shops.styled';
+import { MutatingDots } from 'react-loader-spinner';
 
 function Shops() {
     const navigate = useNavigate();
@@ -36,7 +37,19 @@ function Shops() {
                             <Title>Choose a pharmacy</Title>
                         </TitleWrapper>
                     )}
-                    <Suspense fallback={<h1>Loading...</h1>}>
+                    <Suspense
+                        fallback={
+                            <MutatingDots
+                                height={100}
+                                width={100}
+                                color="#1976d2"
+                                secondaryColor="#1976d2"
+                                radius={12.5}
+                                ariaLabel="mutating-dots-loading"
+                                visible={true}
+                            />
+                        }
+                    >
                         <Outlet />
                     </Suspense>
                 </ProductsListWrapper>

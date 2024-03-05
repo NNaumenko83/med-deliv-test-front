@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getCoupons } from '../../services/ShopAPI';
 import CouponList from '../../components/CouponList/CouponList';
 import Container from '../../components/Container/Container';
+import { MutatingDots } from 'react-loader-spinner';
 
 const Coupons = () => {
     const [randomCoupons, setRandomCoupons] = useState([]);
@@ -34,7 +35,26 @@ const Coupons = () => {
 
     return (
         <Container>
-            {randomCoupons?.length > 0 && (
+            {isLoading && (
+                <div
+                    style={{
+                        width: '100%',
+                        display: 'flex',
+                        justifyContent: 'center',
+                    }}
+                >
+                    <MutatingDots
+                        height={100}
+                        width={100}
+                        color="#1976d2"
+                        secondaryColor="#1976d2"
+                        radius={12.5}
+                        ariaLabel="mutating-dots-loading"
+                        visible={true}
+                    />
+                </div>
+            )}
+            {!isLoading && randomCoupons?.length > 0 && (
                 <CouponList coupons={randomCoupons} />
             )}
         </Container>

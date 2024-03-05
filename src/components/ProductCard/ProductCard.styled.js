@@ -3,11 +3,12 @@ import styled from '@emotion/styled';
 export const Card = styled.li`
     flex-basis: calc((100% - 4 * 10px) / 3);
     padding: 15px 10px;
-    border: 1px solid #2976bf;
+    border: 1px solid #8ed0ff;
     border-radius: 20px;
-    -webkit-box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.75);
+
+    -webkit-box-shadow: 0px 0px 10px -3px rgba(0, 115, 255, 1);
+    -moz-box-shadow: 0px 0px 10px -3px rgba(0, 115, 255, 1);
+    box-shadow: 0px 0px 10px -3px rgba(0, 115, 255, 1);
 `;
 
 export const AddButton = styled.button`

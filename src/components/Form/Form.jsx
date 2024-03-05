@@ -12,17 +12,19 @@ import { deleteShop, selectShop } from '../../redux/shopSlice';
 import { sendOrder } from '../../services/ShopAPI';
 import { AddressInput } from '../AddressInput/AddressInput';
 import { AddressContext } from '../../pages/ShoppingCart/ShoppingCart';
+import ErrorText from '../ErrorText/ErrorText';
 
 export const Form = () => {
     const dispatch = useDispatch();
     const selectedProducts = useSelector(selectProducts);
     const shop = useSelector(selectShop);
     const [isLoading, setIsLoading] = useState(false);
-    const { isPeople } = useContext(AddressContext);
+    const { isPeople, addressBuyer } = useContext(AddressContext);
 
-    const initialState = { name: '', email: '', phone: '', address: '' };
+    const initialState = { name: '', email: '', phone: '' };
 
     const [formData, setFormData] = useState(initialState);
+    console.log('formData:', formData);
 
     const [errors, setErrors] = useState({});
 
@@ -110,9 +112,9 @@ export const Form = () => {
             newErrors.phone = 'Invalid phone number';
         }
 
-        if (!formData.adress.trim()) {
+        if (!addressBuyer.trim()) {
             formIsValid = false;
-            newErrors.adress = 'Address is required';
+            newErrors.address = 'Address is required';
         }
 
         setErrors(newErrors);
@@ -129,12 +131,12 @@ export const Form = () => {
             <label>
                 Name:
                 <FormInput type="text" name="name" onChange={handleChange} />
-                {/* {errors.name && <ErrorText>{errors.name}</ErrorText>} */}
+                {errors.name && <ErrorText>{errors.name}</ErrorText>}
             </label>
             <label>
                 Email:
                 <FormInput type="email" name="email" onChange={handleChange} />
-                {/* {errors.email && <ErrorText>{errors.email}</ErrorText>} */}
+                {errors.email && <ErrorText>{errors.email}</ErrorText>}
             </label>
             <label>
                 Phone:
@@ -144,7 +146,7 @@ export const Form = () => {
                     onChange={handleChange}
                     placeholder="XXX XXX-XX-XX"
                 />
-                {/* {errors.phone && <ErrorText>{errors.phone}</ErrorText>} */}
+                {errors.phone && <ErrorText>{errors.phone}</ErrorText>}
             </label>
 
             <SubmitButton
