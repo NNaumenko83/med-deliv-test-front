@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import CouponCard from '../CouponCard/CouponCard';
+import { StyledCouponsList } from './CouponList.styled';
 
 function CouponList({ coupons }) {
     return (
-        <ul>
+        <StyledCouponsList>
             {coupons.map(coupon => (
                 <CouponCard key={coupon.id} coupon={coupon} />
             ))}
-        </ul>
+        </StyledCouponsList>
     );
 }
 

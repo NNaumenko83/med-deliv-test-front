@@ -1,4 +1,9 @@
 import PropTypes from 'prop-types';
+import {
+    CopyButton,
+    DiscountWrapper,
+    StyledCouponCard,
+} from './CouponCard.styled';
 
 function CouponCard({ coupon }) {
     const copyCouponId = couponId => {
@@ -9,10 +14,16 @@ function CouponCard({ coupon }) {
     };
 
     return (
-        <li>
-            Coupon ID: {coupon.id} - Discount: {coupon.discount}%
-            <button onClick={() => copyCouponId(coupon.id)}>Copy</button>
-        </li>
+        <StyledCouponCard>
+            <DiscountWrapper>-{coupon.discount}%</DiscountWrapper>
+            <div>
+                <h3>{coupon.id}</h3>
+            </div>
+
+            <CopyButton onClick={() => copyCouponId(coupon.id)}>
+                Copy code
+            </CopyButton>
+        </StyledCouponCard>
     );
 }
 
