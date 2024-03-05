@@ -13,14 +13,14 @@ export const CartContainer = styled.div`
 
 export const CartProducts = styled.div`
     display: flex;
-    /* width: calc((100% - 15px * 2 + 30px) / 2); */
     gap: 15px;
     padding: 20px;
-    border: 1px solid #272729;
+    border: 1px solid #8ed0ff;
     border-radius: 5px;
-    -webkit-box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.75);
+
+    -webkit-box-shadow: 0px 0px 10px -3px rgba(0, 115, 255, 1);
+    -moz-box-shadow: 0px 0px 10px -3px rgba(0, 115, 255, 1);
+    box-shadow: 0px 0px 10px -3px rgba(0, 115, 255, 1);
 
     grid-area: 1 / 5 / 7 / 9;
 `;
@@ -29,11 +29,12 @@ export const FormContainer = styled.div`
     padding: 20px;
     overflow: auto;
 
-    border: 1px solid #272729;
+    border: 1px solid #8ed0ff;
     border-radius: 5px;
-    -webkit-box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.75);
+
+    -webkit-box-shadow: 0px 0px 10px -3px rgba(0, 115, 255, 1);
+    -moz-box-shadow: 0px 0px 10px -3px rgba(0, 115, 255, 1);
+    box-shadow: 0px 0px 10px -3px rgba(0, 115, 255, 1);
 
     grid-area: 5 / 1 / 9 / 5;
 `;
@@ -46,12 +47,15 @@ export const TextPrice = styled.p`
 export const MapWrapper = styled.div`
     grid-area: 1 / 1 / 5/ 5;
     background-color: purple;
-    border: 1px solid #272729;
+
     border-radius: 5px;
     overflow: hidden;
-    -webkit-box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.75);
+
+    border: 1px solid #8ed0ff;
+
+    -webkit-box-shadow: 0px 0px 10px -3px rgba(0, 115, 255, 1);
+    -moz-box-shadow: 0px 0px 10px -3px rgba(0, 115, 255, 1);
+    box-shadow: 0px 0px 10px -3px rgba(0, 115, 255, 1);
 `;
 
 export const PriceWrapper = styled.div`

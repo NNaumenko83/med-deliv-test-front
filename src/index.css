@@ -47,6 +47,18 @@ html,
 body {
     height: 100%;
     min-width: 20rem;
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #e4dcdc;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #0077ef;
+    }
 }
 
 html {

@@ -29,8 +29,6 @@ export const SubmitButton = styled.button`
     width: 100px;
     height: 36px;
 
-    border: 1px solid #020024;
-    border-radius: 5px;
     :hover {
         background-color: ${props => (props.disabled ? null : '#047ad6')};
         color: ${props => (props.disabled ? null : '#c2e3ff')};
