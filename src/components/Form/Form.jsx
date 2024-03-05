@@ -135,7 +135,7 @@ export const Form = () => {
                     name="name"
                     onChange={handleChange}
                     label="Name"
-                    error={errors.name}
+                    error={!!errors.name}
                     sx={{ width: '100%' }}
                 />
                 {errors.name && <ErrorText>{errors.name}</ErrorText>}
@@ -146,7 +146,7 @@ export const Form = () => {
                     name="email"
                     onChange={handleChange}
                     label="Email"
-                    error={errors.name}
+                    error={!!errors.email}
                     sx={{ width: '100%' }}
                 />
                 {errors.email && <ErrorText>{errors.email}</ErrorText>}
@@ -158,7 +158,7 @@ export const Form = () => {
                     onChange={handleChange}
                     placeholder="XXX XXX-XX-XX"
                     label="Phone"
-                    error={errors.name}
+                    error={!!errors.phone}
                     sx={{ width: '100%' }}
                 />
                 {errors.phone && <ErrorText>{errors.phone}</ErrorText>}
@@ -183,7 +183,7 @@ export const Form = () => {
                         strokeWidthSecondary={2}
                     />
                 ) : (
-                    <p>Submit</p>
+                    <p>Confirm order</p>
                 )}
             </SubmitButton>
         </FormCart>

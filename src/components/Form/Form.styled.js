@@ -19,6 +19,7 @@ export const SubmitButton = styled.button`
 
     position: absolute;
 
+    color: ${props => (props.disabled ? '#8d8377' : '#ffffff')};
     right: 10px;
     bottom: 10px;
 
@@ -26,19 +27,17 @@ export const SubmitButton = styled.button`
     justify-content: center;
     align-items: center;
 
-    width: 100px;
-    height: 36px;
-
-    :hover {
-        background-color: ${props => (props.disabled ? null : '#047ad6')};
-        color: ${props => (props.disabled ? null : '#c2e3ff')};
-        -webkit-box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 1);
-        -moz-box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 1);
-        box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 1);
-    }
-    :active {
-        background-color: ${props => (props.disabled ? null : '#005de9')};
-        color: ${props => (props.disabled ? null : '#c2e3ff')};
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #020024;
+    opacity: 0.8;
+    background-color: ${props => (props.disabled ? null : '#005de9')};
+    border-radius: 30px;
+    transition: all 100ms linear;
+    font-size: 16px;
+    &:not(:disabled):hover {
+        opacity: 1;
+        color: #f8efae;
     }
 `;
 
