@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FormCart, StyledLabel, SubmitButton } from './Form.styled';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
@@ -34,10 +34,18 @@ export const Form = () => {
 
     const initialState = { name: '', email: '', phone: '' };
 
-    const [formData, setFormData] = useState(initialState);
-    console.log('formData:', formData);
+    const getFormDataFromLocalStorage = () => {
+        const storedData = localStorage.getItem('formData');
+        return storedData ? JSON.parse(storedData) : initialState;
+    };
+
+    const [formData, setFormData] = useState(getFormDataFromLocalStorage);
 
     const [errors, setErrors] = useState({});
+
+    useEffect(() => {
+        localStorage.setItem('formData', JSON.stringify(formData));
+    }, [formData]);
 
     const handleChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -101,7 +109,6 @@ export const Form = () => {
                     progress: undefined,
                     theme: 'colored',
                 });
-                return;
             }
         } catch (error) {
             console.log(error);
@@ -158,6 +165,7 @@ export const Form = () => {
                     name="name"
                     onChange={handleChange}
                     label="Name"
+                    value={formData.name}
                     error={!!errors.name}
                     sx={{ width: '100%' }}
                 />
@@ -169,6 +177,7 @@ export const Form = () => {
                     name="email"
                     onChange={handleChange}
                     label="Email"
+                    value={formData.email}
                     error={!!errors.email}
                     sx={{ width: '100%' }}
                 />
@@ -180,6 +189,7 @@ export const Form = () => {
                     name="phone"
                     onChange={handleChange}
                     label="Phone"
+                    value={formData.phone}
                     error={!!errors.phone}
                     sx={{ width: '100%' }}
                 />

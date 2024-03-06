@@ -15,7 +15,6 @@ export const getProducts = async shopId => {
 export const sendOrder = async body => {
     const response = await productsApi.post('/orders', body);
     console.log('response:', response);
-
     return;
 };
 

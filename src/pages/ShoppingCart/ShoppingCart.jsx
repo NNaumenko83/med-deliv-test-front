@@ -42,10 +42,11 @@ const ShoppingCart = () => {
     const [locationBuyer, setLocationBuyer] = useState(null);
     const recaptchaRef = useRef(null);
     const [couponId, setCouponId] = useState(null);
+    console.log('couponId:', couponId);
+
     const [isPeople, setIsPeople] = useState(false);
     const [discount, setDiscount] = useState(0);
     const [totalWithDiscount, setTotalWithDiscount] = useState(0);
-    console.log('totalWithDiscount:', totalWithDiscount);
 
     const { data: coupons } = useQuery({
         queryKey: ['coupons'],
@@ -123,9 +124,9 @@ const ShoppingCart = () => {
                     <CouponsWrapper>
                         <TextField
                             type="text"
-                            value={couponId}
+                            value={couponId ? couponId : ''}
                             onChange={handlerInputCouponChange}
-                            placeholder="coupone code"
+                            placeholder="coupon code"
                             label="Coupon Code"
                         />
                     </CouponsWrapper>
