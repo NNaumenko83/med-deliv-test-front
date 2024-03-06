@@ -32,9 +32,7 @@ export const getCoupons = async () => {
 };
 
 export const getOrderById = async id => {
-    console.log('id:', id);
     const response = await productsApi.get(`/orders/${id}`);
-    console.log('response:', response);
     return response.data;
 };
 

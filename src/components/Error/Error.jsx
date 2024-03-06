@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
+import { ErrorMessage } from './Error.styled';
 
 export const Error = ({ errorMessage }) => {
     return (
-        <h1>
-            Ooops!
+        <ErrorMessage>
+            Ooops! Something went wrong...
             {errorMessage}
-        </h1>
+        </ErrorMessage>
     );
 };
 
