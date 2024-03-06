@@ -15,6 +15,6 @@ function HistoryProductsList({ products }) {
     );
 }
 
-// HistoryProductsList.propTypes = productsPropType;
+HistoryProductsList.propTypes = productsPropType;
 
 export default HistoryProductsList;

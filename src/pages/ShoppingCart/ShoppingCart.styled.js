@@ -49,7 +49,7 @@ export const TextPrice = styled.p`
 
 export const MapWrapper = styled.div`
     grid-area: 1 / 1 / 5/ 5;
-    background-color: purple;
+    background-color: grey;
 
     border-radius: 5px;
     overflow: hidden;

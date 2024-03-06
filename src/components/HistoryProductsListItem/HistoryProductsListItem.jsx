@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
     ContentWrapper,
     Image,
@@ -8,14 +9,12 @@ import {
 } from './HistoryProductsListItem.styled';
 
 import imagePlaceholder from '../../images/placeholder-image.jpeg';
-import PropTypes from 'prop-types';
 import ProductPrice from '../ProductPrice/ProductPrice';
 import ProductNameTitle from '../ProductNameTitle/ProductNameTitle';
 
-// eslint-disable-next-line no-unused-vars
 export const HistoryProductsListItem = ({
     product: {
-        product: { imageURL, name: productName, price, name },
+        product: { imageURL, name: productName, price },
         quantity,
     },
 }) => {
@@ -28,7 +27,7 @@ export const HistoryProductsListItem = ({
             <ImageWrapper style={{ width: '50%' }}>
                 <Image
                     src={imageURL}
-                    alt={name}
+                    alt={productName}
                     width={'300px'}
                     onError={handleImageError}
                 />
@@ -49,10 +48,13 @@ export const HistoryProductsListItem = ({
     );
 };
 
-// HistoryProductsListItem.propTypes = {
-//     image: PropTypes.string.isRequired,
-//     id: PropTypes.string.isRequired,
-//     price: PropTypes.number.isRequired,
-//     name: PropTypes.string.isRequired,
-//     quantity: PropTypes.number.isRequired,
-// };
+HistoryProductsListItem.propTypes = {
+    product: PropTypes.shape({
+        product: PropTypes.shape({
+            imageURL: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            price: PropTypes.number.isRequired,
+        }).isRequired,
+        quantity: PropTypes.number.isRequired,
+    }).isRequired,
+};

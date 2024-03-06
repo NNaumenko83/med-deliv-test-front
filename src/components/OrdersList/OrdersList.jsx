@@ -1,7 +1,7 @@
 import HistoryProductsList from '../HistoryProductsList/HistoryProductsList';
 import { SumTotalPrice } from '../HistoryProductsListItem/HistoryProductsListItem.styled';
 
-import ordersPropTypes from './OrdersList.props';
+import ordersArrayType from './OrdersList.props';
 import {
     NumberOrder,
     OrderInfoWrapper,
@@ -26,7 +26,7 @@ function OrdersList({ orders }) {
                         <SumTotalPrice>
                             TOTAL: {order.totalWithDiscount.toFixed(2)} UAH
                         </SumTotalPrice>
-                        <ShowInfoLink to={`/products/${order.id}`}>
+                        <ShowInfoLink to={`/orders/${order.id}`}>
                             Show info
                         </ShowInfoLink>
                     </OrderInfoWrapper>
@@ -38,4 +38,4 @@ function OrdersList({ orders }) {
 
 export default OrdersList;
 
-OrdersList.propTypes = ordersPropTypes;
+OrdersList.propTypes = ordersArrayType;

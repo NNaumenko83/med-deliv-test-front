@@ -8,7 +8,7 @@ import { MutatingDots } from 'react-loader-spinner';
 import { Error } from '../Error/Error';
 
 function ShopList() {
-    const { data, isLoasing, error } = useQuery({
+    const { data, isLoading, error } = useQuery({
         queryKey: ['shops'],
         queryFn: getShops,
         staleTime: 6000,
@@ -22,7 +22,7 @@ function ShopList() {
                         {shop.name}
                     </CustomLink>
                 ))}
-            {isLoasing && (
+            {isLoading && (
                 <MutatingDots
                     height={100}
                     width={100}

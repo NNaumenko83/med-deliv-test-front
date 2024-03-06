@@ -9,6 +9,8 @@ import {
     SearchWrapper,
 } from './Histoty.styled';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import { MutatingDots } from 'react-loader-spinner';
+import { Error } from '../../components/Error/Error';
 
 const History = () => {
     const [searchParams] = useSearchParams();
@@ -25,7 +27,6 @@ const History = () => {
         queryFn: () => getOrders(searchEmail, searchPhone),
         staleTime: 60000,
     });
-    console.log('data:', data);
 
     const debounceDelay = 500;
 
@@ -43,6 +44,7 @@ const History = () => {
             }
         }, debounceDelay);
         return () => clearTimeout(debounceTimeout);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchEmail, searchPhone]);
 
     return (
@@ -53,6 +55,18 @@ const History = () => {
 
             <OrdersListWrapper>
                 {data && <OrdersList orders={data} />}
+                {isLoading && (
+                    <MutatingDots
+                        height={100}
+                        width={100}
+                        color="#1976d2"
+                        secondaryColor="#1976d2"
+                        radius={12.5}
+                        ariaLabel="mutating-dots-loading"
+                        visible={true}
+                    />
+                )}
+                {error && <Error error={error} />}
             </OrdersListWrapper>
         </HistoryContainer>
     );
