@@ -1,5 +1,4 @@
 import {
-    Button,
     ContentWrapper,
     Image,
     ImageWrapper,

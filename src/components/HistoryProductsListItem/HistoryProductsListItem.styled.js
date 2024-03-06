@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
 import { TotalPrice } from '../../pages/ShoppingCart/ShoppingCart.styled';
 
-export const ProductCartItem = styled.li`
-    flex-basis: 100%;
+export const ProductListItem = styled.li`
+    max-width: 400px;
+    min-width: 400px;
     display: flex;
     gap: 20px;
     height: auto;
     padding: 16px;
 
-    border: 1px solid #272729;
     border-radius: 20px;
     -webkit-box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.75);
@@ -23,14 +23,6 @@ export const ImageWrapper = styled.div`
     border: 1px solid #9796ab;
     background-color: white;
     overflow: hidden;
-`;
-
-export const Input = styled.input`
-    text-align: center;
-    font-size: 20px;
-    border: 1px solid #dad9d7;
-    border-radius: 5px;
-    height: 25px;
 `;
 
 export const ContentWrapper = styled.div`
@@ -50,7 +42,7 @@ export const InputTotalWrapper = styled.div`
 
 export const SumTotalPrice = styled(TotalPrice)`
     color: #1752a6;
-    font-size: 24px;
+    font-size: 20px;
 `;
 
 export const Image = styled.img`

@@ -25,6 +25,7 @@ const History = () => {
         queryFn: () => getOrders(searchEmail, searchPhone),
         staleTime: 60000,
     });
+    console.log('data:', data);
 
     const debounceDelay = 500;
 
@@ -44,18 +45,14 @@ const History = () => {
         return () => clearTimeout(debounceTimeout);
     }, [searchEmail, searchPhone]);
 
-    console.log('email:', email);
-    console.log('phone:', phone);
-
     return (
         <HistoryContainer>
             <SearchWrapper>
-                <h1>HISTORY</h1>
                 <SearchBar />
             </SearchWrapper>
 
             <OrdersListWrapper>
-                <OrdersList />
+                {data && <OrdersList orders={data} />}
             </OrdersListWrapper>
         </HistoryContainer>
     );
