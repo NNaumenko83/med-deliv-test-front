@@ -6,4 +6,6 @@ export const CartList = styled.ul`
     gap: 10px;
     flex-wrap: wrap;
     overflow: auto;
+    width: 100%;
+    padding: 10px;
 `;

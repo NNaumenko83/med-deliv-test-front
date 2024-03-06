@@ -14,6 +14,7 @@ import imagePlaceholder from '../../images/placeholder-image.jpeg';
 import PropTypes from 'prop-types';
 import ProductPrice from '../ProductPrice/ProductPrice';
 import ProductNameTitle from '../ProductNameTitle/ProductNameTitle';
+import { DeleteButton } from '../ProductCard/ProductCard.styled';
 
 export const CartProductsListItem = ({ image, price, id, name, qty }) => {
     const dispatch = useDispatch();
@@ -59,9 +60,9 @@ export const CartProductsListItem = ({ image, price, id, name, qty }) => {
                     </SumTotalPrice>
                 </InputTotalWrapper>
 
-                <Button type="button" onClick={handleButtonDeleteClick}>
+                <DeleteButton type="button" onClick={handleButtonDeleteClick}>
                     Delete
-                </Button>
+                </DeleteButton>
             </ContentWrapper>
         </ProductCartItem>
     );

@@ -14,6 +14,7 @@ export const CartContainer = styled.div`
 
 export const CartProducts = styled.div`
     display: flex;
+
     gap: 15px;
     padding: 20px;
     border: 1px solid #8ed0ff;
