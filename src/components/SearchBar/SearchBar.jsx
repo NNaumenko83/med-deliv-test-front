@@ -6,6 +6,10 @@ import { StyledSearchBar } from './SearchBar.styled';
 
 function SearchBar() {
     const [searchParams, setSearchParams] = useSearchParams();
+    const { phone, email } = useMemo(
+        () => Object.fromEntries([...searchParams]),
+        [searchParams]
+    );
 
     const params = useMemo(
         () => Object.fromEntries([...searchParams]),
@@ -24,6 +28,7 @@ function SearchBar() {
                 onChange={handleInputChange}
                 label="Email"
                 sx={{ width: '100%' }}
+                value={email}
             />
             <TextField
                 type="tel"
@@ -31,6 +36,7 @@ function SearchBar() {
                 onChange={handleInputChange}
                 label="Phone"
                 sx={{ width: '100%' }}
+                value={phone}
             />
         </StyledSearchBar>
     );

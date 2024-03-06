@@ -11,7 +11,6 @@ import {
 } from './Histoty.styled';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { MutatingDots } from 'react-loader-spinner';
-import { Error } from '../../components/Error/Error';
 
 const History = () => {
     const [searchParams] = useSearchParams();
@@ -23,10 +22,11 @@ const History = () => {
     const [searchEmail, setSearchEmail] = useState(email || null);
     const [searchPhone, setSearchPhone] = useState(phone || null);
 
-    const { data, isLoading, error } = useQuery({
+    const { data, isLoading } = useQuery({
         queryKey: ['orders', searchEmail, searchPhone],
         queryFn: () => getOrders(searchEmail, searchPhone),
         staleTime: 60000,
+        enabled: !!searchEmail || !!searchPhone,
     });
 
     const debounceDelay = 500;
@@ -46,7 +46,7 @@ const History = () => {
         }, debounceDelay);
         return () => clearTimeout(debounceTimeout);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [searchEmail, searchPhone]);
+    }, [phone, email]);
 
     return (
         <HistoryContainer>
@@ -69,7 +69,6 @@ const History = () => {
                         />
                     </LoadingWrapper>
                 )}
-                {error && <Error error={error} />}
             </OrdersListWrapper>
         </HistoryContainer>
     );
