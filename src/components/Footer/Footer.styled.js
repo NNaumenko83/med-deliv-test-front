@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
-import { Container } from '../../App.styled';
+import { ContainerStyled } from '../Container/Container.styled';
 
 export const FooterStyled = styled.footer`
     background-color: #1976d2;
 `;
 
-export const FooterContainer = styled(Container)`
+export const FooterContainer = styled(ContainerStyled)`
     display: flex;
     height: 120px;
     padding: 8px;

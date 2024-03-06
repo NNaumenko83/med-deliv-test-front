@@ -14,13 +14,22 @@ import { AddressInput } from '../AddressInput/AddressInput';
 import { AddressContext } from '../../pages/ShoppingCart/ShoppingCart';
 import ErrorText from '../ErrorText/ErrorText';
 import TextField from '@mui/material/TextField';
+import { convertPhoneNumber } from '../../helpers/convertPhoneNumber';
+import { emailRegexp, phoneRegexp } from '../../constant/regex';
 
 export const Form = () => {
     const dispatch = useDispatch();
     const selectedProducts = useSelector(selectProducts);
     const shop = useSelector(selectShop);
     const [isLoading, setIsLoading] = useState(false);
-    const { isPeople, addressBuyer } = useContext(AddressContext);
+    const {
+        isPeople,
+        addressBuyer,
+        couponId,
+        discount,
+        totalWithDiscount,
+        setCouponId,
+    } = useContext(AddressContext);
     const total = useSelector(selectTotalValue);
 
     const initialState = { name: '', email: '', phone: '' };
@@ -39,12 +48,29 @@ export const Form = () => {
         try {
             setIsLoading(true);
             if (validateForm()) {
+                const phone = convertPhoneNumber(formData.phone);
                 await sendOrder({
                     ...formData,
-                    shop,
-                    products: [...selectedProducts],
+                    phone,
+                    shop: shop.shop,
+                    total,
+                    coupon: couponId,
+                    address: addressBuyer,
+                    discount,
+                    totalWithDiscount,
+                    products: [
+                        ...selectedProducts.map(product => {
+                            return {
+                                product: product.id,
+                                quantity: product.qty,
+                                orderPrice: product.price,
+                            };
+                        }),
+                    ],
                 });
+
                 setFormData(initialState);
+                setCouponId(null);
 
                 e.target.reset();
 
@@ -95,21 +121,18 @@ export const Form = () => {
             newErrors.email = '';
         }
 
-        const emailRegExp = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
         if (!formData.email.trim()) {
             formIsValid = false;
             newErrors.email = 'Email is required';
-        } else if (!emailRegExp.test(formData.email)) {
+        } else if (!emailRegexp.test(formData.email)) {
             formIsValid = false;
             newErrors.email = 'Invalid email address';
         }
 
-        const phoneRegExp = /^\d{3} \d{3}-\d{2}-\d{2}$/;
-
         if (!formData.phone.trim()) {
             formIsValid = false;
             newErrors.phone = 'Phone is required';
-        } else if (!phoneRegExp.test(formData.phone)) {
+        } else if (!phoneRegexp.test(formData.phone)) {
             formIsValid = false;
             newErrors.phone = 'Invalid phone number';
         }
@@ -156,7 +179,6 @@ export const Form = () => {
                     type="text"
                     name="phone"
                     onChange={handleChange}
-                    placeholder="XXX XXX-XX-XX"
                     label="Phone"
                     error={!!errors.phone}
                     sx={{ width: '100%' }}

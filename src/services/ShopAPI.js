@@ -32,3 +32,31 @@ export const getCoupons = async () => {
     const response = await productsApi.get('/coupons');
     return response.data;
 };
+
+export const getOrderById = async () => {
+    // const response = await productsApi.get('/coupons');
+    // return response.data;
+};
+
+export const getOrders = async (email = '', phone = '') => {
+    console.log('phone:', !!phone);
+    console.log('email:', !!email);
+    let queryString = '/orders';
+
+    if (email) {
+        queryString += `?email=${email}`;
+    }
+
+    if (phone) {
+        queryString +=
+            (queryString.includes('?') ? '&' : '?') + `phone=${phone}`;
+    }
+    if (!email && !phone) {
+        queryString = '/orders';
+    }
+
+    console.log('queryString:', queryString);
+    const response = await productsApi.get(queryString);
+    console.log('response:', response);
+    return response.data;
+};

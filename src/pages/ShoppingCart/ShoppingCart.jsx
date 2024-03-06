@@ -41,7 +41,7 @@ const ShoppingCart = () => {
     const [addressBuyer, setAddressBuyer] = useState('');
     const [locationBuyer, setLocationBuyer] = useState(null);
     const recaptchaRef = useRef(null);
-    const [couponId, setCouponId] = useState('');
+    const [couponId, setCouponId] = useState(null);
     const [isPeople, setIsPeople] = useState(false);
     const [discount, setDiscount] = useState(0);
     const [totalWithDiscount, setTotalWithDiscount] = useState(0);
@@ -52,7 +52,6 @@ const ShoppingCart = () => {
         queryFn: getCoupons,
         staleTime: 60000,
     });
-    console.log('coupons:', coupons);
 
     const handlerInputCouponChange = e => {
         setCouponId(e.target.value);
@@ -82,6 +81,10 @@ const ShoppingCart = () => {
                 setLocationBuyer,
                 isPeople,
                 setIsPeople,
+                couponId,
+                discount,
+                totalWithDiscount,
+                setCouponId,
             }}
         >
             <Container>
