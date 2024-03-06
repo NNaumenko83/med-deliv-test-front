@@ -61,7 +61,7 @@ export const AddressInput = ({ addressError }) => {
 
         getGeocode({ address: description }).then(results => {
             const { lat, lng } = getLatLng(results[0]);
-            console.log('📍 Coordinates: ', { lat, lng });
+
             setLocationBuyer({ lat, lng });
         });
     };

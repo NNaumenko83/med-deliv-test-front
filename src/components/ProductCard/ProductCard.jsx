@@ -30,11 +30,6 @@ export const ProductCard = ({ name, img, price, id, currency }) => {
     const selectedProducts = useSelector(selectProducts);
 
     const handleButtonClick = () => {
-        console.log(
-            '!!shop && shop !== shopName:',
-            !!shop && shop !== shopName
-        );
-        console.log('!!shop:', !!shop);
         if (!!shop && shop !== shopName) {
             toast.error(
                 'Attention: Please ensure that all items in your basket are from a single pharmacy.',
