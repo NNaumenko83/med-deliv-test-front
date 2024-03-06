@@ -8,13 +8,13 @@ const productsApi = axios.create({
 
 export const getProducts = async shopId => {
     const response = await productsApi(`/products/by-shop/${shopId}`);
-    console.log('response:', response);
+
     return response.data;
 };
 
 export const sendOrder = async body => {
     const response = await productsApi.post('/orders', body);
-    console.log('response:', response);
+
     return;
 };
 
@@ -38,8 +38,6 @@ export const getOrderById = async () => {
 };
 
 export const getOrders = async (email = '', phone = '') => {
-    console.log('phone:', !!phone);
-    console.log('email:', !!email);
     let queryString = '/orders';
 
     if (email) {
@@ -54,8 +52,7 @@ export const getOrders = async (email = '', phone = '') => {
         queryString = '/orders';
     }
 
-    console.log('queryString:', queryString);
     const response = await productsApi.get(queryString);
-    console.log('response:', response);
+
     return response.data;
 };

@@ -15,6 +15,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getShopAddress } from '../../services/ShopAPI';
 import { GOOGLE_MAPS_API_KEY } from '../../constant/googleKeys';
 import { AddressContext } from '../../pages/ShoppingCart/ShoppingCart';
+import { toast } from 'react-toastify';
 
 setDefaults({
     key: GOOGLE_MAPS_API_KEY,
@@ -26,10 +27,6 @@ const Map = React.memo(() => {
     const shop = useSelector(selectShop);
     const [directionsKey, setDirectionsKey] = useState(0);
     const [locationStore, setLocationStore] = useState();
-
-    useEffect(() => {
-        console.log('useEffect MAP');
-    });
 
     const { locationBuyer, setLocationBuyer } = useContext(AddressContext);
 
@@ -50,8 +47,18 @@ const Map = React.memo(() => {
                     const { lat, lng } = response.results[0].geometry.location;
                     setLocationStore({ lat, lng });
                 },
+                // eslint-disable-next-line no-unused-vars
                 error => {
-                    console.error(error);
+                    toast.error('Fill all fields', {
+                        position: 'top-center',
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: 'colored',
+                    });
                 }
             );
         }
@@ -79,7 +86,6 @@ const Map = React.memo(() => {
         if (locationBuyer && locationStore) {
             setResponse(null);
             setDirectionsKey(prevKey => prevKey + 1);
-            console.log('Response cleared:', response);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [locationBuyer, locationStore]);
@@ -107,7 +113,6 @@ const Map = React.memo(() => {
     const onLoad = marker => {};
 
     const onClick = e => {
-        console.log('Click detected!');
         if (e.latLng?.lat() && e.latLng?.lng()) {
             setLocationBuyer({
                 lat: e.latLng?.lat(),
@@ -115,7 +120,6 @@ const Map = React.memo(() => {
             });
             setResponse(null);
             setDirectionsKey(prevKey => prevKey + 1);
-            console.log('Response cleared:', response);
         }
     };
 

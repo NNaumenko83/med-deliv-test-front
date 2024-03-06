@@ -42,7 +42,6 @@ const ShoppingCart = () => {
     const [locationBuyer, setLocationBuyer] = useState(null);
     const recaptchaRef = useRef(null);
     const [couponId, setCouponId] = useState(null);
-    console.log('couponId:', couponId);
 
     const [isPeople, setIsPeople] = useState(false);
     const [discount, setDiscount] = useState(0);

@@ -111,7 +111,16 @@ export const Form = () => {
                 });
             }
         } catch (error) {
-            console.log(error);
+            toast.error('Something went wrong', {
+                position: 'top-center',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'colored',
+            });
         } finally {
             setIsLoading(false);
         }

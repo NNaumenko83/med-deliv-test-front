@@ -7,7 +7,7 @@ import { deleteShop } from '../../redux/shopSlice';
 
 export const CartProductsList = () => {
     const products = useSelector(selectProducts);
-    console.log('products:', products);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
