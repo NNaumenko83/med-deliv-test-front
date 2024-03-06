@@ -16,8 +16,10 @@ import ErrorText from '../ErrorText/ErrorText';
 import TextField from '@mui/material/TextField';
 import { convertPhoneNumber } from '../../helpers/convertPhoneNumber';
 import { emailRegexp, phoneRegexp } from '../../constant/regex';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const Form = () => {
+    const queryClient = useQueryClient();
     const dispatch = useDispatch();
     const selectedProducts = useSelector(selectProducts);
     const shop = useSelector(selectShop);
@@ -51,13 +53,48 @@ export const Form = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    const addOrderMutate = useMutation({
+        mutationFn: sendOrder,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['orders'] });
+            toast.success(
+                'Thank you for your order. Our manager will call you as soon as possible.',
+                {
+                    position: 'top-center',
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'colored',
+                }
+            );
+
+            dispatch(deleteShop());
+            dispatch(resetProducts());
+        },
+        onError: () => {
+            toast.error('Something went wrong', {
+                position: 'top-center',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'colored',
+            });
+        },
+    });
+
     const handleSubmit = async e => {
         e.preventDefault();
         try {
             setIsLoading(true);
             if (validateForm()) {
                 const phone = convertPhoneNumber(formData.phone);
-                await sendOrder({
+                await addOrderMutate.mutate({
                     ...formData,
                     phone,
                     shop: shop.shop,
@@ -81,23 +118,6 @@ export const Form = () => {
                 setCouponId(null);
 
                 e.target.reset();
-
-                toast.success(
-                    'Thank you for your order. Our manager will call you as soon as possible.',
-                    {
-                        position: 'top-center',
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: 'colored',
-                    }
-                );
-
-                dispatch(deleteShop());
-                dispatch(resetProducts());
             } else {
                 toast.error('Fill all fields', {
                     position: 'top-center',

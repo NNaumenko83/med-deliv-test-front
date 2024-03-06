@@ -42,7 +42,7 @@ export const FormContainer = styled.div`
 `;
 
 export const TextPrice = styled.p`
-    font-size: 1.2rem;
+    font-size: 18px;
     display: flex;
     gap: 4px;
 `;
@@ -89,6 +89,6 @@ export const TestWrapper = styled.div`
 
 export const TotalPrice = styled.span`
     color: #0077ef;
-    font-size: 24px;
+    font-size: 20px;
     font-family: 'MadimiOne';
 `;

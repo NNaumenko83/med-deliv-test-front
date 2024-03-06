@@ -1,23 +1,20 @@
 import { TextField } from '@mui/material';
-
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { StyledSearchBar } from './SearchBar.styled';
 
 function SearchBar() {
     const [searchParams, setSearchParams] = useSearchParams();
-    const { phone, email } = useMemo(
-        () => Object.fromEntries([...searchParams]),
-        [searchParams]
-    );
-
-    const params = useMemo(
+    const { phone = '', email = '' } = useMemo(
         () => Object.fromEntries([...searchParams]),
         [searchParams]
     );
 
     const handleInputChange = e => {
-        setSearchParams({ ...params, [e.target.name]: e.target.value });
+        setSearchParams(params => ({
+            ...params,
+            [e.target.name]: e.target.value,
+        }));
     };
 
     return (

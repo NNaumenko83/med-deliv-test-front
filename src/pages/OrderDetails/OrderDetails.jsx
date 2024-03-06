@@ -36,8 +36,7 @@ const OrderDetails = () => {
                         <p>Discount: {data.discount.toFixed(2)} UAH </p>
                         <p>
                             Total with discount:{' '}
-                            {data.totalWithDiscount.toFixed(2)}
-                            UAH
+                            {data.totalWithDiscount.toFixed(2)} UAH
                         </p>
                     </ContentWrapper>
                 </div>

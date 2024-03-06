@@ -26,7 +26,6 @@ const History = () => {
         queryKey: ['orders', searchEmail, searchPhone],
         queryFn: () => getOrders(searchEmail, searchPhone),
         staleTime: 60000,
-        enabled: !!searchEmail || !!searchPhone,
     });
 
     const debounceDelay = 500;

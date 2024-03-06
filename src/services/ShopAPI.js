@@ -42,11 +42,13 @@ export const getOrders = async (email = '', phone = '') => {
     if (email) {
         queryString += `?email=${email}`;
     }
-
     if (phone) {
+        const phoneNumberDigits = phone.replace(/\D/g, '');
         queryString +=
-            (queryString.includes('?') ? '&' : '?') + `phone=${phone}`;
+            (queryString.includes('?') ? '&' : '?') +
+            `phone=${phoneNumberDigits}`;
     }
+
     if (!email && !phone) {
         queryString = '/orders';
     }
