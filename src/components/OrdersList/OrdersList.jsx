@@ -20,8 +20,8 @@ function OrdersList({ orders }) {
                     <OrderInfoWrapper>
                         <NumberOrder>{order.id}</NumberOrder>
                         <p>
-                            Date:{' '}
-                            {format(new Date(order.createdAt), 'dd-MM-dd-yyyy')}
+                            Date:
+                            {format(new Date(order.createdAt), 'dd-MM-yyyy')}
                         </p>
                         <SumTotalPrice>
                             TOTAL: {order.totalWithDiscount.toFixed(2)} UAH

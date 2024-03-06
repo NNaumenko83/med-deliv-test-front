@@ -5,6 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
 import {
     HistoryContainer,
+    LoadingWrapper,
     OrdersListWrapper,
     SearchWrapper,
 } from './Histoty.styled';
@@ -54,17 +55,19 @@ const History = () => {
             </SearchWrapper>
 
             <OrdersListWrapper>
-                {data && <OrdersList orders={data} />}
+                {!isLoading && data && <OrdersList orders={data} />}
                 {isLoading && (
-                    <MutatingDots
-                        height={100}
-                        width={100}
-                        color="#1976d2"
-                        secondaryColor="#1976d2"
-                        radius={12.5}
-                        ariaLabel="mutating-dots-loading"
-                        visible={true}
-                    />
+                    <LoadingWrapper>
+                        <MutatingDots
+                            height={100}
+                            width={100}
+                            color="#1976d2"
+                            secondaryColor="#1976d2"
+                            radius={12.5}
+                            ariaLabel="mutating-dots-loading"
+                            visible={true}
+                        />
+                    </LoadingWrapper>
                 )}
                 {error && <Error error={error} />}
             </OrdersListWrapper>

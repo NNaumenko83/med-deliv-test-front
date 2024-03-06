@@ -21,3 +21,9 @@ export const SearchWrapper = styled.div`
 export const OrdersListWrapper = styled.div`
     grid-area: 2 / 1 / 4 / 4;
 `;
+
+export const LoadingWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+`;

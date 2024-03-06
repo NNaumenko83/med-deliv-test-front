@@ -14,6 +14,7 @@ import {
 } from './AddressInput.styled';
 import TextField from '@mui/material/TextField';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 
 export const AddressInput = ({ addressError }) => {
     const { setAddressBuyer, locationBuyer, setLocationBuyer } =
@@ -37,9 +38,19 @@ export const AddressInput = ({ addressError }) => {
                     setAddressBuyer(formatted_address);
                 })
                 .catch(error => {
-                    console.error('Error fetching address:', error);
+                    toast.error('Error fetching address', {
+                        position: 'top-right',
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: 'light',
+                    });
                 });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [locationBuyer]);
 
     const ref = useOnclickOutside(() => {

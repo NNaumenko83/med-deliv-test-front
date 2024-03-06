@@ -13,8 +13,7 @@ export const getProducts = async shopId => {
 };
 
 export const sendOrder = async body => {
-    const response = await productsApi.post('/orders', body);
-
+    await productsApi.post('/orders', body);
     return;
 };
 
@@ -32,9 +31,11 @@ export const getCoupons = async () => {
     return response.data;
 };
 
-export const getOrderById = async () => {
-    // const response = await productsApi.get('/coupons');
-    // return response.data;
+export const getOrderById = async id => {
+    console.log('id:', id);
+    const response = await productsApi.get(`/orders/${id}`);
+    console.log('response:', response);
+    return response.data;
 };
 
 export const getOrders = async (email = '', phone = '') => {

@@ -15,6 +15,7 @@ const ShoppingCart = lazy(() => import('./pages/ShoppingCart/ShoppingCart'));
 const Home = lazy(() => import('./pages/Home/Home'));
 const History = lazy(() => import('./pages/Histoty/History'));
 const Coupons = lazy(() => import('./pages/Coupons/Coupons'));
+const OrderDetails = lazy(() => import('./pages/OrderDetails/OrderDetails'));
 
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 
@@ -31,6 +32,7 @@ function App() {
                     <Route path="cart" element={<ShoppingCart />} />
                     <Route path="history" element={<History />} />
                     <Route path="coupons" element={<Coupons />} />
+                    <Route path="orders/:id" element={<OrderDetails />}></Route>
                     <Route path="*" element={<NotFound />} />
                 </Route>
             </Routes>
