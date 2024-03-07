@@ -7,8 +7,8 @@ const productsApi = axios.create({
     baseURL: BASE_URL,
 });
 
-export const getProducts = async shopId => {
-    const response = await productsApi(`/products/by-shop/${shopId}`);
+export const getProducts = async (shopId, search) => {
+    const response = await productsApi(`/products/by-shop/${shopId}${search}`);
 
     return response.data;
 };

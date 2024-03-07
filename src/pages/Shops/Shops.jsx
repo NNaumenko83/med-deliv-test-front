@@ -21,11 +21,26 @@ import {
 } from './Shops.styled';
 import { MutatingDots } from 'react-loader-spinner';
 import Typography from '@mui/material/Typography';
+import { useSearchParams } from 'react-router-dom';
 
 function Shops() {
     const navigate = useNavigate();
     const { shop } = useSelector(selectShop);
     const { shopName } = useParams();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const sortByParam = searchParams.get('sortBy');
+
+    const handleSortChange = e => {
+        setSearchParams(prevParams => {
+            const params = new URLSearchParams(prevParams);
+            if (e.target.value === 'noSort') {
+                params.delete('sortBy');
+            } else {
+                params.set('sortBy', e.target.value);
+            }
+            return params;
+        });
+    };
 
     useEffect(() => {
         if (shop) {
@@ -62,16 +77,22 @@ function Shops() {
                                     value="date"
                                     control={<Radio />}
                                     label="Date"
+                                    checked={sortByParam === 'date'}
+                                    onChange={handleSortChange}
                                 />
                                 <FormControlLabel
                                     value="price"
                                     control={<Radio />}
                                     label="Price"
+                                    checked={sortByParam === 'price'}
+                                    onChange={handleSortChange}
                                 />
                                 <FormControlLabel
                                     value="noSort"
                                     control={<Radio />}
                                     label="No sorting"
+                                    onChange={handleSortChange}
+                                    checked={!sortByParam}
                                 />
                             </RadioGroup>
                         </SortWrapper>

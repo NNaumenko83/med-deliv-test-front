@@ -15,6 +15,7 @@ export const ProductsList = ({ products }) => {
             dispatch(deleteShop());
         }
     }, [dispatch, selectedProducts.length]);
+
     return (
         <List>
             {products.map(product => (
