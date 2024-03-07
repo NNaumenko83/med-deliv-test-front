@@ -73,6 +73,7 @@ export const Form = () => {
 
             dispatch(deleteShop());
             dispatch(resetProducts());
+            setIsLoading(false);
         },
         onError: () => {
             toast.error('Something went wrong', {
@@ -85,6 +86,7 @@ export const Form = () => {
                 progress: undefined,
                 theme: 'colored',
             });
+            setIsLoading(false);
         },
     });
 
@@ -129,6 +131,7 @@ export const Form = () => {
                     progress: undefined,
                     theme: 'colored',
                 });
+                setIsLoading(false);
             }
         } catch (error) {
             toast.error('Something went wrong', {
@@ -141,7 +144,6 @@ export const Form = () => {
                 progress: undefined,
                 theme: 'colored',
             });
-        } finally {
             setIsLoading(false);
         }
     };
@@ -227,8 +229,7 @@ export const Form = () => {
 
             <SubmitButton
                 type="submit"
-                disabled={!isPeople || total === 0}
-                /*  disabled={selectedProducts.length === 0} */
+                disabled={!isPeople || total === 0 || isLoading}
             >
                 {isLoading ? (
                     <Oval
