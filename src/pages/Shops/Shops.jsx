@@ -64,9 +64,14 @@ function Shops() {
                                     label="Date"
                                 />
                                 <FormControlLabel
-                                    value="Price"
+                                    value="price"
                                     control={<Radio />}
                                     label="Price"
+                                />
+                                <FormControlLabel
+                                    value="noSort"
+                                    control={<Radio />}
+                                    label="No sorting"
                                 />
                             </RadioGroup>
                         </SortWrapper>
