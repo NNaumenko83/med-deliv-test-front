@@ -9,7 +9,6 @@ export const shopSlice = createSlice({
     initialState,
     reducers: {
         addShop: (state, action) => {
-            console.log('action.payload:', action.payload);
             state.shop = action.payload;
             return state;
         },
