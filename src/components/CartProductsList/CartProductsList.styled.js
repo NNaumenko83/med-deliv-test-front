@@ -9,3 +9,15 @@ export const CartList = styled.ul`
     width: 100%;
     padding: 10px;
 `;
+
+export const ChooseTitleWrapper = styled.div`
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'MadimiOne';
+    font-size: 25px;
+    color: #038efd;
+`;

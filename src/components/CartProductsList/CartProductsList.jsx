@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectProducts } from '../../redux/productsSlice';
-import { CartList } from './CartProductsList.styled';
+import { CartList, ChooseTitleWrapper } from './CartProductsList.styled';
 import { CartProductsListItem } from '../CartProductListItem/CartProductsListItem';
 import { useEffect } from 'react';
 import { deleteShop } from '../../redux/shopSlice';
@@ -30,6 +30,8 @@ export const CartProductsList = () => {
             ))}
         </CartList>
     ) : (
-        <h3>Choose product</h3>
+        <ChooseTitleWrapper>
+            <h3>Choose products</h3>
+        </ChooseTitleWrapper>
     );
 };
