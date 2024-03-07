@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://med-deliv-test-back.onrender.com/api/';
+// const BASE_URL = 'https://med-deliv-test-back.onrender.com/api/';
+const BASE_URL = 'http://localhost:5000/api/';
 
 const productsApi = axios.create({
     baseURL: BASE_URL,
@@ -56,4 +57,10 @@ export const getOrders = async (email = '', phone = '') => {
     const response = await productsApi.get(queryString);
 
     return response.data;
+};
+
+export const updFavorite = async (id, body) => {
+    console.log('body:', body);
+    await productsApi.patch(`/products/${id}/favorite`);
+    return;
 };

@@ -1,10 +1,12 @@
 import styled from '@emotion/styled';
+import { FaHeart } from 'react-icons/fa';
 
 export const Card = styled.li`
     flex-basis: calc((100% - 4 * 10px) / 3);
     padding: 15px 10px;
     border: 1px solid #8ed0ff;
     border-radius: 20px;
+    position: relative;
 
     -webkit-box-shadow: 0px 0px 10px -3px rgba(0, 115, 255, 1);
     -moz-box-shadow: 0px 0px 10px -3px rgba(0, 115, 255, 1);
@@ -70,4 +72,26 @@ export const InfoWrapper = styled.div`
 
 export const DrugName = styled.h3`
     color: #2976bf;
+`;
+
+export const FavoriteButton = styled.button`
+    border-radius: 50%;
+    background-color: transparent;
+    display: flex;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 30px;
+    right: 30px;
+    color: ${props => (props.favorite ? '#57cbee' : '#cad5e4')};
+    transition: color 250ms linear;
+
+    :hover {
+        color: #57cbee;
+    }
+`;
+
+export const FavoriteIcon = styled(FaHeart)`
+    width: 20px;
+    height: 20px;
 `;

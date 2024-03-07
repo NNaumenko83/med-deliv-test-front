@@ -25,6 +25,7 @@ export const ProductsList = ({ products }) => {
                     price={product.price}
                     currency={product.currency}
                     id={product.id}
+                    favorite={product.favorite}
                 />
             ))}
         </List>

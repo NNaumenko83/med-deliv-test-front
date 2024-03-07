@@ -4,6 +4,8 @@ import {
     Card,
     DeleteButton,
     DrugName,
+    FavoriteButton,
+    FavoriteIcon,
     Image,
     ImageWrapper,
     InfoWrapper,
@@ -21,7 +23,7 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { isProductInCart } from '../../helpers/isProductInCart';
 
-export const ProductCard = ({ name, img, price, id, currency }) => {
+export const ProductCard = ({ name, img, price, id, currency, favorite }) => {
     const dispatch = useDispatch();
     const { shopName } = useParams();
     const { shop } = useSelector(selectShop);
@@ -82,6 +84,8 @@ export const ProductCard = ({ name, img, price, id, currency }) => {
         });
     };
 
+    const handleFavoriteButtonClick = () => {};
+
     return (
         <Card>
             <ImageWrapper>
@@ -107,6 +111,12 @@ export const ProductCard = ({ name, img, price, id, currency }) => {
                     Add to Cart
                 </AddButton>
             )}
+            <FavoriteButton
+                onClick={handleFavoriteButtonClick}
+                favorite={favorite}
+            >
+                <FavoriteIcon />
+            </FavoriteButton>
         </Card>
     );
 };
