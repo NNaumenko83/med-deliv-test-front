@@ -15,17 +15,18 @@ export const ProductsContainer = styled.div`
 
 export const ContentWrapper = styled.div`
     display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-template-rows: 1fr;
-    grid-column-gap: 24px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 50px repeat(4, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
     height: calc(100vh - 210px);
 `;
 export const ShopsListWrapper = styled.div`
-    grid-area: 1 / 1 / 2 / 2;
+    grid-area: 2 / 1 / 6 / 2;
     border-right: 1px solid #bfbfbf;
 `;
 export const ProductsListWrapper = styled.div`
-    grid-area: 1 / 2 / 2 / 3;
+    grid-area: 2 / 2 / 6 / 6;
     max-height: 100%;
     overflow: auto;
 `;
@@ -41,4 +42,16 @@ export const Title = styled.h3`
     font-size: 30px;
     font-weight: 600;
     color: #1a71b6;
+`;
+
+export const SortWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-bottom: 1px solid #bfbfbf;
+`;
+
+export const Test = styled.div`
+    grid-area: 1 / 1 / 2 / 6;
 `;
