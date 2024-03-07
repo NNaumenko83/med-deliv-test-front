@@ -13,7 +13,6 @@ const Coupons = () => {
         queryFn: getCoupons,
         staleTime: 60000,
     });
-    console.log(coupons);
 
     useEffect(() => {
         if (coupons?.length > 0) {
