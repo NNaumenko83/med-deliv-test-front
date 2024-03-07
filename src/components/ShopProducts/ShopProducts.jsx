@@ -21,7 +21,6 @@ const ShopProducts = () => {
         staleTime: 6000,
     });
 
-    console.log('data:', data);
     return (
         <>
             {isLoading && (

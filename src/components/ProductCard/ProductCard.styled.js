@@ -87,7 +87,7 @@ export const FavoriteButton = styled.button`
     transition: color 250ms linear;
 
     :hover {
-        color: #57cbee;
+        color: #83efff;
     }
 `;
 

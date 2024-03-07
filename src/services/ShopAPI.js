@@ -59,8 +59,7 @@ export const getOrders = async (email = '', phone = '') => {
     return response.data;
 };
 
-export const updFavorite = async (id, body) => {
-    console.log('body:', body);
-    await productsApi.patch(`/products/${id}/favorite`);
+export const updFavorite = async ({ id, favorite }) => {
+    await productsApi.patch(`/products/${id}/favorite`, { favorite });
     return;
 };

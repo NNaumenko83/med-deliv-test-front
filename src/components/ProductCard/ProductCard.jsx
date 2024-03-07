@@ -22,14 +22,40 @@ import imagePlaceholder from '../../images/placeholder-image.jpeg';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { isProductInCart } from '../../helpers/isProductInCart';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { updFavorite } from '../../services/ShopAPI';
+import { useState } from 'react';
 
 export const ProductCard = ({ name, img, price, id, currency, favorite }) => {
+    const queryClient = useQueryClient();
     const dispatch = useDispatch();
     const { shopName } = useParams();
     const { shop } = useSelector(selectShop);
     const products = useSelector(selectProducts);
+    const [isLoading, setIsLoading] = useState(false);
 
     const selectedProducts = useSelector(selectProducts);
+
+    const updFavoriteMutate = useMutation({
+        mutationFn: updFavorite,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['products', shopName] });
+            setIsLoading(false);
+        },
+        onError: () => {
+            toast.error('Something went wrong', {
+                position: 'top-center',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'colored',
+            });
+            setIsLoading(false);
+        },
+    });
 
     const handleButtonClick = () => {
         if (!!shop && shop !== shopName) {
@@ -84,7 +110,9 @@ export const ProductCard = ({ name, img, price, id, currency, favorite }) => {
         });
     };
 
-    const handleFavoriteButtonClick = () => {};
+    const handleFavoriteButtonClick = async () => {
+        await updFavoriteMutate.mutate({ id, favorite: !favorite });
+    };
 
     return (
         <Card>
@@ -114,6 +142,7 @@ export const ProductCard = ({ name, img, price, id, currency, favorite }) => {
             <FavoriteButton
                 onClick={handleFavoriteButtonClick}
                 favorite={favorite}
+                disabled={isLoading}
             >
                 <FavoriteIcon />
             </FavoriteButton>
@@ -127,4 +156,5 @@ ProductCard.propTypes = {
     price: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
     currency: PropTypes.string.isRequired,
+    favorite: PropTypes.bool.isRequired,
 };

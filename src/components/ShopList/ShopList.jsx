@@ -11,7 +11,7 @@ function ShopList() {
     const { data, isLoading, error } = useQuery({
         queryKey: ['shops'],
         queryFn: getShops,
-        staleTime: 6000,
+        staleTime: 60000,
     });
 
     return (
