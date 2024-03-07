@@ -17,20 +17,10 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import { getCoupons } from '../../services/ShopAPI';
 import { useQuery } from '@tanstack/react-query';
 
-// {
-//   "event": {
-//     "token": "TOKEN",
-//     "expectedAction": "USER_ACTION",
-//     "siteKey": "6LfmkIkpAAAAACOTJD68YjPI5hw2IZRwpQvmsMYF",
-//   }
-// }
-// https://recaptchaenterprise.googleapis.com/v1/projects/medicine-1709561944050/assessments?key=API_KEY
-
 import Map from '../../components/Map/Map';
 import Container from '../../components/Container/Container';
 
 import { createContext, useEffect, useRef, useState } from 'react';
-import { CAPTHCA_KEY } from '../../constant/googleKeys';
 import { getDiscount } from '../../helpers/getDiscont';
 import { TextField } from '@mui/material';
 
@@ -132,7 +122,7 @@ const ShoppingCart = () => {
                     <TestWrapper>
                         <ReCAPTCHA
                             ref={recaptchaRef}
-                            sitekey={CAPTHCA_KEY}
+                            sitekey={import.meta.env.VITE_CAPTHCA_KEY}
                             onChange={handlerCaptcha}
                         />
                     </TestWrapper>

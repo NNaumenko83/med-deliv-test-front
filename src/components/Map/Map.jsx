@@ -13,12 +13,11 @@ import { useSelector } from 'react-redux';
 import { selectShop } from '../../redux/shopSlice';
 import { useQuery } from '@tanstack/react-query';
 import { getShopAddress } from '../../services/ShopAPI';
-import { GOOGLE_MAPS_API_KEY } from '../../constant/googleKeys';
 import { AddressContext } from '../../pages/ShoppingCart/ShoppingCart';
 import { toast } from 'react-toastify';
 
 setDefaults({
-    key: GOOGLE_MAPS_API_KEY,
+    key: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
     language: 'en',
 });
 

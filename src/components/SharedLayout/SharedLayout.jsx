@@ -7,18 +7,27 @@ import { Footer } from '../Footer/Footer';
 import { SuspenseWrapper } from './SharedLayout.styled';
 import Main from '../Main/Main';
 import { useLoadScript } from '@react-google-maps/api';
-import { GOOGLE_MAPS_API_KEY } from '../../constant/googleKeys';
+import { toast } from 'react-toastify';
 
 const libraries = ['places'];
 
 export const SharedLayout = () => {
-    const { /* isLoaded,  */ loadError } = useLoadScript({
-        googleMapsApiKey: GOOGLE_MAPS_API_KEY,
+    const { loadError } = useLoadScript({
+        googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
         libraries: libraries,
     });
 
     if (loadError) {
-        console.log('loadError:', loadError);
+        toast.error('Something went wrong', {
+            position: 'top-center',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'colored',
+        });
     }
 
     return (
