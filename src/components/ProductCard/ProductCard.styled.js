@@ -85,10 +85,6 @@ export const FavoriteButton = styled.button`
     right: 30px;
     color: ${props => (props.favorite ? '#57cbee' : '#cad5e4')};
     transition: color 250ms linear;
-
-    :hover {
-        color: #83efff;
-    }
 `;
 
 export const FavoriteIcon = styled(FaHeart)`
